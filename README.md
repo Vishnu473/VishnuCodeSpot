@@ -1,54 +1,97 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Blog Application
 
-Currently, two official plugins are available:
+A simple blog application built with React, TypeScript, and Supabase. It allows users to view blog posts, toggle between light and dark themes, and preview markdown content.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **View Blog Posts**: Users can view a list of blog posts and click to read the full content.
+- **Markdown Preview**: Blog post content is rendered using Markdown and dynamically converted to HTML.
+- **Theme Toggle**: Switch between light and dark themes with persistence across sessions.
+- **Admin Panel**: A page for managing blog posts (add, edit, delete).
+- **Responsive Layout**: Mobile-friendly design with responsive navigation and content layout.
+- **Supabase Backend**: Integrated with Supabase for handling blog posts storage and management.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Project Structure
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+📦src
+ ┣ 📂assets
+ ┃ ┗ 📜react.svg            # Static assets like images/icons
+ ┣ 📂components
+ ┃ ┣ 📜Layout.tsx            # Wrapper component for layout
+ ┃ ┣ 📜MarkDownPreview.tsx   # Component to preview markdown content
+ ┃ ┗ 📜NotFound.tsx          # Page not found component
+ ┣ 📂Context
+ ┃ ┗ 📜ThemeContext.tsx      # Context for theme management (light/dark)
+ ┣ 📂pages
+ ┃ ┣ 📜Admin.tsx            # Admin page for managing posts
+ ┃ ┣ 📜BlogPost.tsx         # Blog post detail page
+ ┃ ┗ 📜Home.tsx             # Home page displaying list of blog posts
+ ┣ 📂types
+ ┃ ┗ 📜BlogPosts.ts         # Type definitions for blog posts
+ ┣ 📂utils
+ ┃ ┗ 📜supabaseClient.ts    # Utility for interacting with Supabase API
+ ┣ 📜App.css                # Global styles
+ ┣ 📜App.tsx                # Main app entry
+ ┣ 📜index.css              # Global styles for index page
+ ┣ 📜main.tsx               # Entry point for React app
+ ┗ 📜vite-env.d.ts          # Vite environment types
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Tech Stack
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **React** - JavaScript library for building user interfaces
+- **TypeScript** - Typed JavaScript to enhance development experience
+- **Tailwind CSS** - Utility-first CSS framework for custom styles
+- **Supabase** - Backend-as-a-Service for managing blog posts and authentication
+- **Vite** - Fast and modern build tool for frontend development
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## Setup
+
+### Prerequisites
+
+- Node.js (version >= 14.x)
+- Supabase account (to manage your blog posts)
+
+### Getting Started
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/your-username/blog-app.git
+   cd blog-app
+   ```
+
+2. **Install dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+3. **Set up Supabase**:
+   - Create a new Supabase project at [Supabase](https://supabase.io/).
+   - Set up a new table for blog posts with fields like `title`, `content`, and `createdAt`.
+   - Update the `supabaseClient.ts` file with your Supabase URL and anon key.
+
+4. **Run the app locally**:
+
+   ```bash
+   npm run dev
+   ```
+
+   This will start the development server and the app will be available at `http://localhost:3000`.
+
+## Usage
+
+- On the home page, you can see a list of blog posts.
+- Click on any post to read the full content.
+- Admins can manage blog posts (add, edit, or delete) from the Admin page.
+- Toggle between light and dark theme using the button in the navigation bar.
+
+## Contributing
+
+1. Fork this repository.
+2. Create a new branch for your feature or bugfix.
+3. Make your changes and test them.
+4. Submit a pull request with a detailed description of your changes.
